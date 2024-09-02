@@ -7,6 +7,12 @@ try:
     import os
     import requests
 
+    # Create all the required dirs
+    os.makedirs(os.getcwd(), "gameFiles")
+    os.makedirs(os.getcwd(), "gameFiles/gameAssets")
+    os.makedirs(os.getcwd(), "gameFiles/gameInfo")
+    os.makedirs(os.getcwd(), "gameFiles/gameScreenshots")
+    
     image_urls = [
         "https://raw.githubusercontent.com/Bernso/MyFirstPythonGame/main/gameFiles/gameAssets/lazer.png",
         "https://raw.githubusercontent.com/Bernso/MyFirstPythonGame/main/gameFiles/gameAssets/body-bg.jpg",
