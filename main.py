@@ -8,7 +8,7 @@ import os
 # Allow for fonts
 pygame.font.init()
 
-# Dimesntions
+# Dimensions
 WIDTH = 1000
 HEIGHT = 800
 
@@ -19,15 +19,17 @@ FONT = pygame.font.SysFont("Gang Of Three", 30)
 
 # Assets
 BG = pygame.transform.scale(pygame.image.load("assets/body-bg.jpg"), (WIDTH, HEIGHT))
+PLAYER_IMAGE = pygame.transform.scale(pygame.image.load("assets/player.png"), (40, 60))  # Adjust the path as needed
+STAR_IMAGE = pygame.transform.scale(pygame.image.load("assets/lazer.png"), (10, 20))  # Adjust the path as needed
 
 # Player Properties
-PLAYER_WIDTH = 40
-PLAYER_HEIGHT = 60
+PLAYER_WIDTH = PLAYER_IMAGE.get_width()
+PLAYER_HEIGHT = PLAYER_IMAGE.get_height()
 PLAYER_VELOCITY = 5
 
-# Star Dimensions (enemies)
-STAR_WIDTH = 10
-STAR_HEIGHT = 20
+# Star Properties (enemies)
+STAR_WIDTH = STAR_IMAGE.get_width()
+STAR_HEIGHT = STAR_IMAGE.get_height()
 STAR_VELOCITY = 3
 
 def screenshot():
@@ -49,57 +51,38 @@ def screenshot():
 
     # Save the screenshot
     screenshot.save(file_path)
-
     print(f"Screenshot saved to {file_path}")
 
 def draw(player, elapsed_time, stars, score):
     WIN.blit(BG, (0, 0))
     
-    text_score = FONT.render(f"Score: {score}", # Text
-                            1, "Black" # Properties (anti-aliusing, colour)
-                            )
+    text_score = FONT.render(f"Score: {score}", 1, "Black")
+    WIN.blit(text_score, (10, 10))
     
-    WIN.blit(text_score, # Text
-            (10, 10) # Co-ordinates
-            )
+    text_time = FONT.render(f"Time: {round(elapsed_time)}", 1, "Black")
+    WIN.blit(text_time, (10, 10 + text_score.get_height()))
     
-    text_time = FONT.render(f"Time: {round(elapsed_time)}", # Text
-                            1, "Black" # Properties (anti-aliusing, colour)
-                            )
+    # Draw the player as a spaceship
+    WIN.blit(PLAYER_IMAGE, (player.x, player.y))
     
-    WIN.blit(text_time, # Text
-            (10, 10 + text_score.get_height()) # Co-ordinates
-            )
-    
-    
-    
-    
-    pygame.draw.rect(WIN, "Green", player)
-    
+    # Draw stars as laser beams
     for star in stars:
-        pygame.draw.rect(WIN, "White", star)
+        WIN.blit(STAR_IMAGE, (star.x, star.y))
     
     pygame.display.update()
-
 
 def main():
     run = True
     score = 0
-    
-    player = pygame.Rect(
-        random.randint(0, WIDTH - PLAYER_WIDTH), (HEIGHT - PLAYER_HEIGHT), # Spawn co-ordinates of the player
-        PLAYER_WIDTH, PLAYER_HEIGHT # Dimensions of the player
-        )
+    player = pygame.Rect(random.randint(0, WIDTH - PLAYER_WIDTH), HEIGHT - PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT)
     print(f"Player Spawned at ({player.x}, {player.y})")
     
     clock = pygame.time.Clock() # To regulate the while loop (make sure it doesnt run too fast)
     
     start_time = time.time()
     elapsed_time = 0
-    
     star_add_increment = 2000
     star_count = 0
-    
     stars = []
     hit = False
     
@@ -114,10 +97,9 @@ def main():
                 star_x = random.randint(0, WIDTH - STAR_WIDTH) # Position where the star spawns (x value)
                 star = pygame.Rect(star_x, -STAR_HEIGHT, STAR_WIDTH, STAR_HEIGHT) # Position
                 stars.append(star)
-                
+            
             star_add_increment = max(200, star_add_increment - 50)
             star_count = 0
-        
         
         for event in pygame.event.get():
             # Check if the game has been stopped
@@ -149,30 +131,14 @@ def main():
                 
         if hit:
             print("Game Over!")
-            
             FONT = pygame.font.SysFont("Gang Of Three", 80)
-    
             lost_text = FONT.render(f"You Lost", 1, "Red")
-            
-            text_border_border = pygame.Rect(
-                WIDTH/2 - lost_text.get_width()/2 - 50 - 5, HEIGHT/2 - lost_text.get_height()/2 - 50 - 5, # Co-ordiantes (with padding)
-                (lost_text.get_width() + 100 + 10), (lost_text.get_height() + 100 + 10) # Dimensions (with padding)
-            )
+            text_border_border = pygame.Rect(WIDTH/2 - lost_text.get_width()/2 - 55, HEIGHT/2 - lost_text.get_height()/2 - 55, lost_text.get_width() + 110, lost_text.get_height() + 110)
             pygame.draw.rect(WIN, "White", text_border_border)
-            
-            text_border = pygame.Rect(
-                WIDTH/2 - lost_text.get_width()/2 - 50, HEIGHT/2 - lost_text.get_height()/2 - 50, # Co-ordiantes (with padding)
-                (lost_text.get_width()+100), (lost_text.get_height()+100) # Dimensions (with padding)
-            )
+            text_border = pygame.Rect(WIDTH/2 - lost_text.get_width()/2 - 50, HEIGHT/2 - lost_text.get_height()/2 - 50, lost_text.get_width() + 100, lost_text.get_height() + 100)
             pygame.draw.rect(WIN, "Black", text_border)
-            
-            
-            
-            WIN.blit(lost_text, # Text
-                    (WIDTH/2 - lost_text.get_width()/2, HEIGHT/2 - lost_text.get_height()/2)) # Co-ordinates
-            
+            WIN.blit(lost_text, (WIDTH/2 - lost_text.get_width()/2, HEIGHT/2 - lost_text.get_height()/2))
             pygame.display.update()
-            
             screenshot()
             
             for seconds in range(4):
