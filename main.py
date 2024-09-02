@@ -8,9 +8,9 @@ try:
     import requests
 
     image_urls = [
-        "https://raw.githubusercontent.com/Bernso/MyFirstPythonGame/5ed27eb12f68210431f12ada0ea2f5a1ff221f7c/gameFiles/gameAssets/lazer.png",
-        "https://raw.githubusercontent.com/Bernso/MyFirstPythonGame/5ed27eb12f68210431f12ada0ea2f5a1ff221f7c/gameFiles/gameAssets/body-bg.jpg",
-        "https://raw.githubusercontent.com/Bernso/MyFirstPythonGame/5ed27eb12f68210431f12ada0ea2f5a1ff221f7c/gameFiles/gameAssets/player.png",
+        "https://raw.githubusercontent.com/Bernso/MyFirstPythonGame/main/gameFiles/gameAssets/lazer.png",
+        "https://raw.githubusercontent.com/Bernso/MyFirstPythonGame/main/gameFiles/gameAssets/body-bg.jpg",
+        "https://raw.githubusercontent.com/Bernso/MyFirstPythonGame/main/gameFiles/gameAssets/player.png",
         "https://raw.githubusercontent.com/Bernso/MyFirstPythonGame/main/gameFiles/gameAssets/powerup.png",
         "https://raw.githubusercontent.com/Bernso/MyFirstPythonGame/main/gameFiles/gameAssets/shield.png"
     ]
