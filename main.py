@@ -56,9 +56,9 @@ try:
 
     # Assets
     BG = pygame.transform.scale(pygame.image.load("assets/body-bg.jpg"), (WIDTH, HEIGHT))
-    PLAYER_IMAGE = pygame.transform.scale(pygame.image.load("assets/player.png"), (40, 60))  # Adjust the path as needed
-    STAR_IMAGE = pygame.transform.scale(pygame.image.load("assets/lazer.png"), (10, 20))  # Adjust the path as needed
-
+    PLAYER_IMAGE = pygame.transform.scale(pygame.image.load("assets/player.png"), (40, 60))
+    STAR_IMAGE = pygame.transform.scale(pygame.image.load("assets/lazer.png"), (10, 20))  
+    
     # Player Properties
     PLAYER_WIDTH = PLAYER_IMAGE.get_width()
     PLAYER_HEIGHT = PLAYER_IMAGE.get_height()
@@ -126,11 +126,11 @@ try:
         while run:
             score += 1
             
-            star_count += clock.tick(60) # How many milliseconds since the last click and To regulate the while loop (make sure it doesnt run too fast)
+            star_count += clock.tick(60) # How many milliseconds since the last tick and To regulate the while loop (make sure it doesnt run too fast)
             elapsed_time = time.time() - start_time
             
             if star_count > star_add_increment:
-                for _ in range(3):
+                for _ in range(5):
                     star_x = random.randint(0, WIDTH - STAR_WIDTH) # Position where the star spawns (x value)
                     star = pygame.Rect(star_x, -STAR_HEIGHT, STAR_WIDTH, STAR_HEIGHT) # Position
                     stars.append(star)
