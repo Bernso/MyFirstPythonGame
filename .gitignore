@@ -1,3 +1,8 @@
 /.venv
 /screenshots
 downloadAssets.py
+build
+main.spec
+powerupVersion.spec
+dist/assets
+dist/screenshots
