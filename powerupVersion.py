@@ -4,6 +4,43 @@ import random
 import pyautogui
 from datetime import datetime
 import os
+import requests
+
+
+image_urls = [
+    "https://raw.githubusercontent.com/Bernso/MyFirstPythonGame/5ed27eb12f68210431f12ada0ea2f5a1ff221f7c/assets/lazer.png",
+    "https://raw.githubusercontent.com/Bernso/MyFirstPythonGame/5ed27eb12f68210431f12ada0ea2f5a1ff221f7c/assets/body-bg.jpg",
+    "https://raw.githubusercontent.com/Bernso/MyFirstPythonGame/5ed27eb12f68210431f12ada0ea2f5a1ff221f7c/assets/player.png",
+    "https://raw.githubusercontent.com/Bernso/MyFirstPythonGame/main/assets/powerup.png",
+    "https://raw.githubusercontent.com/Bernso/MyFirstPythonGame/main/assets/shield.png"
+]
+
+download_dir = "/assets"
+
+def download_images(image_urls, download_dir):
+    # Ensure the download directory exists
+    os.makedirs(download_dir, exist_ok=True)
+
+    for image_url in image_urls:
+        file_name = image_url.split('/')[-1]  # Extract the file name from URL
+        file_path = os.path.join(download_dir, file_name)
+
+        if os.path.exists(file_path):
+            print(f"{file_name} already exists in {download_dir}")
+            continue
+        
+        # Download the image
+        print(f"Downloading {file_name} from {image_url}...")
+        response = requests.get(image_url)
+        if response.status_code == 200:
+            with open(file_path, 'wb') as handler:
+                handler.write(response.content)
+            print(f"Saved {file_name} to {download_dir}")
+        else:
+            print(f"Failed to download {file_name}: {response.status_code}")
+
+download_images(image_urls=image_urls, download_dir=download_dir)
+
 
 # Allow for fonts
 pygame.font.init()
