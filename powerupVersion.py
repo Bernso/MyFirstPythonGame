@@ -9,14 +9,14 @@ try:
 
 
     image_urls = [
-        "https://raw.githubusercontent.com/Bernso/MyFirstPythonGame/5ed27eb12f68210431f12ada0ea2f5a1ff221f7c/assets/lazer.png",
-        "https://raw.githubusercontent.com/Bernso/MyFirstPythonGame/5ed27eb12f68210431f12ada0ea2f5a1ff221f7c/assets/body-bg.jpg",
-        "https://raw.githubusercontent.com/Bernso/MyFirstPythonGame/5ed27eb12f68210431f12ada0ea2f5a1ff221f7c/assets/player.png",
-        "https://raw.githubusercontent.com/Bernso/MyFirstPythonGame/main/assets/powerup.png",
-        "https://raw.githubusercontent.com/Bernso/MyFirstPythonGame/main/assets/shield.png"
+        "https://raw.githubusercontent.com/Bernso/MyFirstPythonGame/5ed27eb12f68210431f12ada0ea2f5a1ff221f7c/gameFiles/gameAssets/lazer.png",
+        "https://raw.githubusercontent.com/Bernso/MyFirstPythonGame/5ed27eb12f68210431f12ada0ea2f5a1ff221f7c/gameFiles/gameAssets/body-bg.jpg",
+        "https://raw.githubusercontent.com/Bernso/MyFirstPythonGame/5ed27eb12f68210431f12ada0ea2f5a1ff221f7c/gameFiles/gameAssets/player.png",
+        "https://raw.githubusercontent.com/Bernso/MyFirstPythonGame/main/gameFiles/gameAssets/powerup.png",
+        "https://raw.githubusercontent.com/Bernso/MyFirstPythonGame/main/gameFiles/gameAssets/shield.png"
     ]
 
-    download_dir = os.path.join(os.getcwd(), "assets")
+    download_dir = os.path.join(os.getcwd(), "gameFiles/gameAssets")
 
     def download_images(image_urls, download_dir):
         # Ensure the download directory exists
@@ -56,11 +56,11 @@ try:
     FONT = pygame.font.SysFont("Gang Of Three", 30)
 
     # Assets
-    BG = pygame.transform.scale(pygame.image.load("assets/body-bg.jpg"), (WIDTH, HEIGHT))
-    PLAYER_IMAGE = pygame.transform.scale(pygame.image.load("assets/player.png"), (40, 60))
-    STAR_IMAGE = pygame.transform.scale(pygame.image.load("assets/lazer.png"), (10, 20))
-    SHIELD_IMAGE = pygame.transform.scale(pygame.image.load("assets/shield.png"), (30, 30))  # Add shield asset
-    POWERUP_IMAGE = pygame.transform.scale(pygame.image.load("assets/powerup.png"), (20, 20))  # Add power-up asset
+    BG = pygame.transform.scale(pygame.image.load("gameFiles/gameAssets/body-bg.jpg"), (WIDTH, HEIGHT))
+    PLAYER_IMAGE = pygame.transform.scale(pygame.image.load("gameFiles/gameAssets/player.png"), (40, 60))
+    STAR_IMAGE = pygame.transform.scale(pygame.image.load("gameFiles/gameAssets/lazer.png"), (10, 20))
+    SHIELD_IMAGE = pygame.transform.scale(pygame.image.load("gameFiles/gameAssets/shield.png"), (30, 30))  # Add shield asset
+    POWERUP_IMAGE = pygame.transform.scale(pygame.image.load("gameFiles/gameAssets/powerup.png"), (20, 20))  # Add power-up asset
 
     # Sound Effects
     pygame.mixer.init()

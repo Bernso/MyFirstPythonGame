@@ -4,5 +4,6 @@ downloadAssets.py
 build
 main.spec
 powerupVersion.spec
-dist/assets
+dist/gameFiles
 dist/screenshots
+gameFiles
