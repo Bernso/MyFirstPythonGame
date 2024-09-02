@@ -8,10 +8,10 @@ try:
     import requests
 
     # Create all the required dirs
-    os.makedirs(os.getcwd(), "gameFiles")
-    os.makedirs(os.getcwd(), "gameFiles/gameAssets")
-    os.makedirs(os.getcwd(), "gameFiles/gameInfo")
-    os.makedirs(os.getcwd(), "gameFiles/gameScreenshots")
+    os.makedirs(os.path.join(os.getcwd(), "gameFiles"), exist_ok=True)
+    os.makedirs(os.path.join(os.getcwd(), "gameFiles", "gameAssets"), exist_ok=True)
+    os.makedirs(os.path.join(os.getcwd(), "gameFiles", "gameInfo"), exist_ok=True)
+    os.makedirs(os.path.join(os.getcwd(), "gameFiles", "gameScreenshots"), exist_ok=True)
     
     image_urls = [
         "https://raw.githubusercontent.com/Bernso/MyFirstPythonGame/main/gameFiles/gameAssets/lazer.png",
