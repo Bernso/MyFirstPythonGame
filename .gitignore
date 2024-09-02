@@ -6,4 +6,4 @@ main.spec
 powerupVersion.spec
 dist/gameFiles
 dist/screenshots
-gameFiles
+gameFiles/gameScreenshots
