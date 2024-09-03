@@ -7,3 +7,4 @@ powerupVersion.spec
 dist/gameFiles
 dist/screenshots
 gameFiles/gameScreenshots
+gameFiles/gameInfo

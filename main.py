@@ -6,6 +6,7 @@ try:
     from datetime import datetime
     import os
     import requests
+    import json
 
     # Create all the required dirs
     os.makedirs(os.path.join(os.getcwd(), "gameFiles"), exist_ok=True)
@@ -48,6 +49,8 @@ try:
     download_images(image_urls=image_urls, download_dir=download_dir)
 
 
+    
+    
     # Allow for fonts
     pygame.font.init()
 
@@ -183,6 +186,36 @@ try:
                 WIN.blit(lost_text, (WIDTH/2 - lost_text.get_width()/2, HEIGHT/2 - lost_text.get_height()/2))
                 pygame.display.update()
                 screenshot()
+                
+                information = {
+                    "Score": score,
+                    "Time": elapsed_time,
+                    "Date": datetime.now().strftime("%d/%m/%Y"),
+                    "Date-Time": datetime.now().strftime("%H:%M:%S")
+                }
+                
+                # File name
+                file_name = os.path.join(os.getcwd(), "gameFiles", "gameInfo", "data.json")
+
+                # Check if the file exists; if not, create it with an initial structure
+                if not os.path.exists(file_name):
+                    # Initialize the file with a basic structure
+                    initial_data = {"Scores": []}
+                    with open(file_name, 'w') as file:
+                        json.dump(initial_data, file, indent=4)
+
+                # Read existing data
+                with open(file_name, 'r') as file:
+                    data = json.load(file)
+
+                # Add the new information
+                data['Scores'].append(information)
+
+                # Write the updated data back to the JSON file
+                with open(file_name, 'w') as file:
+                    json.dump(data, file, indent=4)
+
+                print("Data saved successfully!")
                 
                 for seconds in range(4):
                     print(f"Game closing in {4 - seconds}")
